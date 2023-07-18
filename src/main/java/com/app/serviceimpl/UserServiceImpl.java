@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.entity.User;
+import com.app.payload.LoginRequest;
 import com.app.payload.UserDto;
 import com.app.repositories.UserRepository;
 import com.app.service.UserService;
@@ -52,6 +53,23 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(int id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public UserDto doLogin(LoginRequest logindata) {
+		List<User> all = this.userRepo.findAll();
+		User fuser = null;
+		for(User user : all) {
+			if(user.getPassword().equals(logindata.getPassword()) && 
+					user.getEmail().equals(logindata.getUsername()) ) {
+				fuser = user;
+				break;
+			}
+		}
+		if(fuser != null) {
+			return this.mapper.map(fuser, UserDto.class);
+		}
+		return null;
 	}
 
 }
