@@ -9,10 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
-	private int id;
-	private String name;
-	private String email;
-	private String about;
+public class ApiResponse {
+	
+	private String message;
+	private boolean success;
 
 }
