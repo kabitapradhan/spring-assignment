@@ -13,4 +13,5 @@ public interface PostService {
 	public PostDto updatePost(PostDto dto ,int id);
 	//public PostDto updatePostWithUser(PostDto dto , int id);
 	public void deletePost(int id);
+	public List<PostDto> getPostByUser(int id);
 }

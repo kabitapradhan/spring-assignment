@@ -1,6 +1,6 @@
 package com.app.controllers;
 
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -89,6 +89,12 @@ public class PostController {
 		response.setContentType(MediaType.IMAGE_JPEG_VALUE);
 		StreamUtils.copy(resource, response.getOutputStream());
 		
+		
+	}
+	@GetMapping("/user/{userId}")
+	public ResponseEntity<List<PostDto>> getPostByUserId(@PathVariable("userId") int userId){
+		List<PostDto> list = this.postService.getPostByUser(userId);
+		return new ResponseEntity<List<PostDto>>(list , HttpStatus.OK);
 	}
 	
 	

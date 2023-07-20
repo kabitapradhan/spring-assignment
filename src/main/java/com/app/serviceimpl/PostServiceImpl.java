@@ -68,4 +68,14 @@ public class PostServiceImpl implements PostService {
 		this.postRepo.delete(post);
 	}
 
+	@Override
+	public List<PostDto> getPostByUser(int id) {
+		User user = this.userRepo.findById(id).get();
+		List<Post> list = this.postRepo.findByUser(user);
+		List<PostDto> all = list.stream()
+				.map(mp-> this.mapper.map(mp, PostDto.class))
+				.collect(Collectors.toList());
+		return all;
+	}
+
 }
