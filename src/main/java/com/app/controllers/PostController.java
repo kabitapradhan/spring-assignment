@@ -43,7 +43,10 @@ public class PostController {
 	
 	// create or add Post into database
 	@PostMapping("/user/{userId}")
-	public ResponseEntity<PostDto> addPost(@RequestBody PostDto dto , @PathVariable("userId") Integer userId ) {
+	public ResponseEntity<PostDto> addPost(@RequestBody PostDto dto,
+			@PathVariable("userId") Integer userId) 
+	{
+		
 		PostDto createPost = this.postService.createPost(dto , userId);
 		return new ResponseEntity<PostDto>(createPost,HttpStatus.CREATED);
 	}

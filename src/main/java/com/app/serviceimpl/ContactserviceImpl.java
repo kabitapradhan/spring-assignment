@@ -52,8 +52,8 @@ public class ContactserviceImpl implements ContactService {
 
 	@Override
 	public void deleteContact(int id) {
-		// TODO Auto-generated method stub
-
+		Contact contact = this.contactRepo.findById(id).get();
+		this.contactRepo.delete(contact);
 	}
 
 	@Override
